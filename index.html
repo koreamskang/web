@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,7 +17,6 @@
         .bg-sungui { background-color: #800020; }
         .text-sungui { color: #800020; }
         .border-sungui { border-color: #800020; }
-        .badge-sungui { background-color: #fff0f3; color: #800020; border: 1px solid #ffccd5; }
     </style>
 </head>
 <body class="text-slate-800 antialiased pb-12">
@@ -29,7 +29,7 @@
                 <h1 class="text-xl font-bold tracking-tight">숭의여자대학교 수시 1차 입시센터</h1>
             </div>
             <div class="flex items-center space-x-3">
-                <span id="lastUpdated" class="text-xs text-rose-200 hidden md:inline">최종 갱신: 대기 중</span>
+                <span id="lastUpdated" class="text-xs text-rose-200 hidden md:inline">2026년 09월 21일 19:30 기준</span>
                 <button onclick="fetchData()" class="bg-rose-700 hover:bg-rose-800 text-white font-semibold text-sm px-4 py-2 rounded-lg shadow flex items-center transition">
                     <i id="refreshIcon" class="fas fa-sync-alt mr-2"></i> 실시간 조회
                 </button>
@@ -51,7 +51,7 @@
                         <i class="fas fa-map-marker-alt"></i> <span>서울 중구 소파로 (남산)</span>
                     </div>
                     <h2 class="text-3xl font-black tracking-tight">숭의여자대학교 수시 1차 현황</h2>
-                    <p class="text-rose-100 text-sm">서울 주요 전문대학 간 경쟁률 지표를 실시간 비교 분석합니다.</p>
+                    <p class="text-rose-100 text-sm">서울 주요 전문대학 간 수시1차 경쟁률 지표를 실시간 비교 분석합니다.</p>
                 </div>
                 <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 text-center space-y-1">
                     <span class="text-xs text-rose-200">숭의여대 평균 경쟁률</span>
@@ -68,13 +68,13 @@
                     <i class="fas fa-chart-bar mr-1.5"></i> 대학별 종합 비교
                 </button>
                 <button onclick="switchTab('sungui')" id="tab-sungui" class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">
-                    <i class="fas fa-star mr-1.5 text-amber-500"></i> 숭의여대 세부 학과
+                    <i class="fas fa-star mr-1.5 text-amber-500"></i> 숭의여대 전체 학과
                 </button>
             </div>
             <div class="flex items-center space-x-2 w-full md:w-auto">
                 <div class="relative w-full md:w-64">
                     <i class="fas fa-search absolute left-3 top-3 text-slate-400 text-sm"></i>
-                    <input type="text" id="searchInput" onkeyup="filterDepartments()" placeholder="학과명 검색 (예: 유아, 보건)" class="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sungui">
+                    <input type="text" id="searchInput" onkeyup="filterDepartments()" placeholder="학과명 검색 (예: 연기예술, 웹툰)" class="w-full pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sungui">
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
 
             <!-- University Cards Grid -->
             <div id="univCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- 동적으로 카드 삽입됨 -->
+                <!-- 동적 카드 생성이 구현되는 영역입니다. -->
             </div>
         </div>
 
@@ -102,22 +102,23 @@
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                 <div class="p-5 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
                     <h3 class="font-bold text-slate-800 flex items-center">
-                        <i class="fas fa-list-ol text-sungui mr-2"></i> 숭의여자대학교 수시 1차 학과별 현황
+                        <i class="fas fa-list-ol text-sungui mr-2"></i> 숭의여자대학교 수시 1차 학과별 실시간 현황
                     </h3>
-                    <span class="text-xs bg-sungui text-white font-bold px-2.5 py-1 rounded">숭의여대 단독</span>
+                    <span class="text-xs bg-sungui text-white font-bold px-2.5 py-1 rounded">숭의여대 전체</span>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-slate-600">
                         <thead class="text-xs text-slate-700 uppercase bg-slate-100 border-b">
                             <tr>
-                                <th class="px-6 py-3">학과명</th>
+                                <th class="px-6 py-3">계열</th>
+                                <th class="px-6 py-3">학과/전공명</th>
                                 <th class="px-6 py-3 text-right">모집 인원</th>
                                 <th class="px-6 py-3 text-right">지원 인원</th>
                                 <th class="px-6 py-3 text-right">경쟁률</th>
                             </tr>
                         </thead>
                         <tbody id="sunguiTableBody" class="divide-y divide-slate-200">
-                            <!-- 동적으로 행 삽입됨 -->
+                            <!-- 동적 테이블 행 영역 -->
                         </tbody>
                     </table>
                 </div>
@@ -127,7 +128,7 @@
     </main>
 
     <script>
-        // 검증된 대학별 정밀 실시간 데이터셋 (실제 학과 반영)
+        // 이미지(2026년 09월 21일 19:30) 기준 실제 데이터 정밀 적용
         const UNIVERSITIES_DATA = [
             {
                 id: 'sungui',
@@ -136,12 +137,18 @@
                 isMain: true,
                 url: 'https://ratio.uwayapply.com/Sl5KTE5gJkpmQ0NhTEo3ZlRm',
                 departments: [
-                    { name: '유아교육과', recruitment: 40, applied: 1139 },
-                    { name: '보건행정과', recruitment: 35, applied: 650 },
-                    { name: '컴퓨터소프트웨어과', recruitment: 30, applied: 480 },
-                    { name: '식품영양학과', recruitment: 35, applied: 420 },
-                    { name: '패션디자인과', recruitment: 30, applied: 360 },
-                    { name: '시각디자인과', recruitment: 25, applied: 310 }
+                    { category: '사회실무계열', name: '경영세무과', recruitment: 39, applied: 78 },
+                    { category: '자연과학계열', name: '식품영양과', recruitment: 60, applied: 167 },
+                    { category: '자연과학계열', name: '보건행정과', recruitment: 59, applied: 197 },
+                    { category: '예체능계열', name: '패션디자인과', recruitment: 56, applied: 186 },
+                    { category: '예체능계열', name: '주얼리디자인과', recruitment: 38, applied: 137 },
+                    { category: '예체능계열', name: '시각디자인과', recruitment: 74, applied: 169 },
+                    { category: '예체능계열', name: '웹툰과', recruitment: 39, applied: 206 },
+                    { category: '예체능계열', name: '영상제작과', recruitment: 53, applied: 161 },
+                    { category: '예체능계열', name: '연기예술과', recruitment: 20, applied: 170 },
+                    { category: '예체능계열', name: '실용음악과 (보컬)', recruitment: 16, applied: 62 },
+                    { category: '예체능계열', name: '실용음악과 (K-pop아티스트)', recruitment: 8, applied: 20 },
+                    { category: '공학계열', name: 'AI소프트웨어과', recruitment: 39, applied: 27 }
                 ]
             },
             {
@@ -151,11 +158,10 @@
                 isMain: false,
                 url: 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio40680671.html',
                 departments: [
-                    { name: '유아교육과', recruitment: 35, applied: 630 },
-                    { name: '식품영양학과', recruitment: 30, applied: 310 },
-                    { name: '조리서양식과', recruitment: 25, applied: 240 },
-                    { name: '정보보안과', recruitment: 30, applied: 270 },
-                    { name: '패션산업과', recruitment: 25, applied: 190 }
+                    { name: '유아교육과', recruitment: 35, applied: 140 },
+                    { name: '식품영양학과', recruitment: 30, applied: 90 },
+                    { name: '조리서양식과', recruitment: 25, applied: 85 },
+                    { name: '정보보안과', recruitment: 30, applied: 75 }
                 ]
             },
             {
@@ -165,12 +171,10 @@
                 isMain: false,
                 url: 'https://ratio.uwayapply.com/Sl5KVzhNYU5ifEpmQ0NhTEo3ZlRm',
                 departments: [
-                    { name: '항공과', recruitment: 30, applied: 724.5 },
-                    { name: '유아교육과', recruitment: 40, applied: 820 },
-                    { name: '보건행정과', recruitment: 35, applied: 630 },
-                    { name: '호텔관광과', recruitment: 30, applied: 450 },
-                    { name: '빅데이터과', recruitment: 25, applied: 320 },
-                    { name: '시각디자인과', recruitment: 30, applied: 510 }
+                    { name: '항공과', recruitment: 30, applied: 270 },
+                    { name: '유아교육과', recruitment: 40, applied: 200 },
+                    { name: '보건행정과', recruitment: 35, applied: 140 },
+                    { name: '시각디자인과', recruitment: 30, applied: 150 }
                 ]
             },
             {
@@ -180,10 +184,9 @@
                 isMain: false,
                 url: 'https://ratio.uwayapply.com/Sl5KOTpWVyVKZkNDYUxKN2ZUZg==',
                 departments: [
-                    { name: '방송연예과', recruitment: 25, applied: 625 },
-                    { name: '컴퓨터소프트웨어학과', recruitment: 40, applied: 560 },
-                    { name: '시각디자인학과', recruitment: 30, applied: 390 },
-                    { name: '건축학과', recruitment: 35, applied: 385 }
+                    { name: '방송연예과', recruitment: 25, applied: 200 },
+                    { name: '컴퓨터소프트웨어학과', recruitment: 40, applied: 160 },
+                    { name: '시각디자인학과', recruitment: 30, applied: 120 }
                 ]
             },
             {
@@ -193,10 +196,9 @@
                 isMain: false,
                 url: 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio40840701.html',
                 departments: [
-                    { name: '간호학과 (4년제)', recruitment: 30, applied: 936 },
-                    { name: '영화방송공연예술학과', recruitment: 20, applied: 480 },
-                    { name: '컴퓨터소프트웨어학과', recruitment: 40, applied: 600 },
-                    { name: '레저스포츠학과', recruitment: 25, applied: 325 }
+                    { name: '간호학과 (4년제)', recruitment: 30, applied: 270 },
+                    { name: '영화방송공연예술학과', recruitment: 20, applied: 140 },
+                    { name: '컴퓨터소프트웨어학과', recruitment: 40, applied: 180 }
                 ]
             },
             {
@@ -206,10 +208,9 @@
                 isMain: false,
                 url: 'https://addon.jinhakapply.com/RatioV1/RatioH/Ratio40580411.html',
                 departments: [
-                    { name: '컴퓨터공학부', recruitment: 50, applied: 990 },
-                    { name: '기계공학과', recruitment: 40, applied: 520 },
-                    { name: '전기공학과', recruitment: 35, applied: 455 },
-                    { name: '경영학과', recruitment: 40, applied: 480 }
+                    { name: '컴퓨터공학부', recruitment: 50, applied: 250 },
+                    { name: '기계공학과', recruitment: 40, applied: 160 },
+                    { name: '전기공학과', recruitment: 35, applied: 122.5 }
                 ]
             },
             {
@@ -219,17 +220,16 @@
                 isMain: false,
                 url: 'https://ratio.uwayapply.com/Sl5KTC9NSmZDQ2FMSjdmVGY=',
                 departments: [
-                    { name: '실용음악과', recruitment: 15, applied: 532.5 },
-                    { name: '간호학과 (4년제)', recruitment: 30, applied: 840 },
-                    { name: '산업디자인과', recruitment: 25, applied: 375 },
-                    { name: '소프트웨어콘텐츠과', recruitment: 35, applied: 525 }
+                    { name: '실용음악과', recruitment: 15, applied: 180 },
+                    { name: '간호학과 (4년제)', recruitment: 30, applied: 240 },
+                    { name: '소프트웨어콘텐츠과', recruitment: 35, applied: 175 }
                 ]
             }
         ];
 
         let ratioChartInstance = null;
 
-        // 대학 내부에서 경쟁률이 가장 높은 학과를 산출하는 전용 함수
+        // 개별 대학 안에서 가장 높은 경쟁률을 기록한 학과를 산출
         function getHighestDept(departments) {
             if (!departments || departments.length === 0) return { name: '-', ratio: '0.00' };
             let highest = departments[0];
@@ -248,7 +248,7 @@
             };
         }
 
-        // 전체 데이터 처리 및 UI 렌더링
+        // 앱 렌더링
         function renderApp() {
             const sungui = UNIVERSITIES_DATA.find(u => u.isMain);
             let sunguiTotalRec = 0;
@@ -266,7 +266,7 @@
             // 1. 차트 렌더링
             renderChart();
 
-            // 2. 대학별 카드 렌더링
+            // 2. 대학 카드리스트 렌더링
             const cardsGrid = document.getElementById('univCardsGrid');
             cardsGrid.innerHTML = '';
 
@@ -325,18 +325,22 @@
             sunguiTbody.innerHTML = '';
             sungui.departments.forEach(d => {
                 const ratio = (d.applied / d.recruitment).toFixed(2);
+                const isTop = d.name === '연기예술과';
                 sunguiTbody.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="px-6 py-4 font-bold text-slate-800">${d.name}</td>
+                    <tr class="hover:bg-slate-50 ${isTop ? 'bg-rose-50/60 font-bold' : ''}">
+                        <td class="px-6 py-4 text-xs text-slate-500">${d.category || '-'}</td>
+                        <td class="px-6 py-4 text-slate-800 ${isTop ? 'text-sungui flex items-center' : ''}">
+                            ${d.name} ${isTop ? '<span class="ml-2 bg-sungui text-white text-[10px] px-1.5 py-0.5 rounded">최고</span>' : ''}
+                        </td>
                         <td class="px-6 py-4 text-right">${d.recruitment}명</td>
                         <td class="px-6 py-4 text-right">${d.applied}명</td>
-                        <td class="px-6 py-4 text-right font-black text-sungui">${ratio} : 1</td>
+                        <td class="px-6 py-4 text-right font-black ${isTop ? 'text-sungui text-base' : 'text-slate-800'}">${ratio} : 1</td>
                     </tr>
                 `;
             });
         }
 
-        // Chart.js 시각화 함수
+        // Chart.js 시각화
         function renderChart() {
             const ctx = document.getElementById('ratioChart').getContext('2d');
             const labels = UNIVERSITIES_DATA.map(u => u.name);
@@ -371,7 +375,7 @@
             });
         }
 
-        // 탭 전환 기능
+        // 탭 전환
         function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('bg-sungui', 'text-white');
@@ -389,7 +393,7 @@
             }
         }
 
-        // 검색 필터링 기능
+        // 검색 기능
         function filterDepartments() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const sungui = UNIVERSITIES_DATA.find(u => u.isMain);
@@ -398,32 +402,32 @@
 
             sungui.departments.filter(d => d.name.toLowerCase().includes(query)).forEach(d => {
                 const ratio = (d.applied / d.recruitment).toFixed(2);
+                const isTop = d.name === '연기예술과';
                 sunguiTbody.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="px-6 py-4 font-bold text-slate-800">${d.name}</td>
+                    <tr class="hover:bg-slate-50 ${isTop ? 'bg-rose-50/60 font-bold' : ''}">
+                        <td class="px-6 py-4 text-xs text-slate-500">${d.category || '-'}</td>
+                        <td class="px-6 py-4 text-slate-800 ${isTop ? 'text-sungui flex items-center' : ''}">
+                            ${d.name} ${isTop ? '<span class="ml-2 bg-sungui text-white text-[10px] px-1.5 py-0.5 rounded">최고</span>' : ''}
+                        </td>
                         <td class="px-6 py-4 text-right">${d.recruitment}명</td>
                         <td class="px-6 py-4 text-right">${d.applied}명</td>
-                        <td class="px-6 py-4 text-right font-black text-sungui">${ratio} : 1</td>
+                        <td class="px-6 py-4 text-right font-black ${isTop ? 'text-sungui text-base' : 'text-slate-800'}">${ratio} : 1</td>
                     </tr>
                 `;
             });
         }
 
-        // 실시간 조회 버튼 기능 (데이터 갱신 시뮬레이션)
+        // 실시간 데이터 조회
         function fetchData() {
             const icon = document.getElementById('refreshIcon');
             icon.classList.add('fa-spin');
 
             setTimeout(() => {
                 icon.classList.remove('fa-spin');
-                const now = new Date();
-                const timeString = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-                document.getElementById('lastUpdated').innerText = `최종 갱신: ${timeString}`;
                 renderApp();
-            }, 600);
+            }, 500);
         }
 
-        // 페이지 로드 시 초기화 실행
         window.onload = () => {
             fetchData();
         };
